@@ -1,15 +1,18 @@
 import { EyeSlashIcon } from "@heroicons/react/24/outline";
 import { allCharacters } from '../../data/data'
 import { useState } from "react";
+import Loader from "./Loader";
 
-function CharacterList({characters}) {
+function CharacterList({characters,isLoading}) {
     return (
         <div className="w-full overflow-auto sm:w-1/2 md:w-1/3">
-            {characters.map((item) => (
-                <Character key={item.id} item={item} />
-            ))}
+           
+            {
+            isLoading ? (<Loader/>):(  characters.map((item) => (
+              <Character key={item.id} item={item} />
+          )))
+          }
         </div>
-
     );
 }
 

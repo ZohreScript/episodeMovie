@@ -7,7 +7,7 @@ export default function Navbar({children})  {
       <nav className="flex flex-col sm:flex-row items-center justify-between bg-slate-700 p-4 m-4 rounded-2xl">
       <Logo />
       <div className="flex flex-col md:flex-row items-center mt-4 sm:mt-0">
-<Search/>
+{/* <Search/> */}
 {/* <SearchResult numOfResult={numOfResult}/> */}
 {children}
 </div>
@@ -25,7 +25,7 @@ function Logo() {
   </div>;
 }
 
-function Search(){
+export function Search({query,setQuery}){
   return   <input
   type="text"
   className="p-2 rounded-md text-slate-100 bg-slate-500 font-normal mt-4 sm:mt-0"
@@ -33,7 +33,7 @@ function Search(){
 />
 }
 export function SearchResult({numOfResult }){
-  <div className="text-slate-400 mt-2 md:mt-0 md:ml-4">Found {numOfResult} characters</div>
+ return <div className="text-slate-400 mt-2 md:mt-0 md:ml-4">Found {numOfResult} characters</div>
 }
 function Favourites(){
   return(
