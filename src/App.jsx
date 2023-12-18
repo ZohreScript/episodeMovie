@@ -9,59 +9,28 @@ import { allCharacters } from '../data/data'
 import CharacterDetails from './Components/CharacterDetails'
 import toast, { Toaster } from 'react-hot-toast';
 import Modal from './Components/Modal';
+import useCharacter from './hooks/useCharacter';
+import useLocalStorage from './hooks/useLocalStorage';
 
 function App() {
-  const [characters, setCharacters] = useState(allCharacters);
-  const [isLoading, setIsLoading] = useState(false);
-  const [query, setQuery] = useState("");
-  const [selectedId, setSelectedId] = useState(null);
-  const [favorites, setfavorites] = useState(() => JSON.parse(localStorage.getItem("FAVORITES")) || []);
+//فراخوانی هوک  usecharacter
+const [query, setQuery] = useState("");
+const{isLoading,characters}=useCharacter(query);
+const [selectedId, setSelectedId] = useState(null);
+  // const [favorites, setfavorites] = useState(() => JSON.parse(
+  //   localStorage.getItem("FAVORITES")) || []);
 
-  useEffect(() => {
-    const controller = new AbortController();
-    const signal = controller.signal
+///useEfect send to hook usecharacter
 
-
-    async function fetchData() {
-      //error handeling
-      try {
-        setIsLoading(true);
-
-        const { data } = await axios.get(`
-        https://rickandmortyapi.com/api/character/?name=${query}`, { signal });
-        setCharacters(data.results);
-        // setCharacters(data.results.slice(0,5))  for limited 5 character show on ui
-      }
-      catch (err) {
-
-        //if use fetch=>err.name ==="AbortError"   if (err.name !== "AbortError")
-        //  if use axios=> axios.isCancel() ارروهایی رو ب کاربر نشون میده که بجز اینا کنسل کردن رکوست اضافه حین رندرینگ هستن
-        if (!axios.isCancel()) {
-          setCharacters([]);
-          toast.error(err.response.data.error); //use toast
-        }
-      } finally {
-        setIsLoading(false)
-      }
-    }
-    //کاربر حداقل3کاراکتر وارد کنه بعد نتیجه ایی رو ببینه
-    // if (query.length < 3) {
-    //   setCharacters([]);
-    //   return;
-    // }
-    fetchData();
-    //cleanup fetch وقتی که کاربرتایپ کردن در سرچ مکث کردن آخرین کاراکتر وارد کرد بعد رکوست بفرسته سرور جلوگیری از ارسال رکوست بعد از تایپ هر کاراکتر
-    return () => {
-      //controller
-      controller.abort(); //هربار کامپوننت در حال ری رندر شدن باشه اون رکوپستی که در حال اجرا باشه کنسل میکنه
-    }
-  }, [query])
+const [favorites, setfavorites] =useLocalStorage("FAVORITES");
+//اسم ایمنحا مهم نیست چی باشه اگه جای دیگ مثلا سبدخرید خواستین اطلاعات ذخیره کنین مینویسی
+//const[cart,setcart]
 
 
-  //LOCALSTORAGE
-  useEffect(() => {
-    localStorage.setItem("FAVORITES", JSON.stringify(favorites))
-  }, [favorites])
+
+
+//useEfect local storage send to hook useLocalstorage
+
 
   const handleAddFavorites = (char) => {
     setfavorites((preFav) => [...preFav, char]);
@@ -70,6 +39,7 @@ function App() {
     setfavorites((favorites.filter((fav) => fav.id !== id)))
     // or   setfavorites (((preFav)=>preFav.filter((fav)=>fav.id !== id)))
   }
+
 
 
   //چک کردن اینکه  کاراکتر مورد نظر جزو علاقمنذی ها بوده اگر نبوده اضافه شه
