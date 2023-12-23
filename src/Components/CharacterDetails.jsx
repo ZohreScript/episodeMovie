@@ -94,7 +94,8 @@ function CharacterSubInfo({character, isAddToFavorites,onAddFavorites}) {
 
 
         {
-          isAddToFavorites ? (<p className='text-slate-400'>Already Added To Favorites ✅</p>) :
+          isAddToFavorites ? 
+          (<p className='text-slate-400'>Already Added To Favorites ✅</p>) :
             (
               <button
                 onClick={() => onAddFavorites(character)}
@@ -134,7 +135,6 @@ function EpisodesList({ episodes }) {
       >
         <ArrowUpCircleIcon
           className="w-6 h-6 text-slate-200" />
-        {/* class={`transform ${sortBy ? 'rotate-0' : 'rotate-180'}`}          /> */}
       </button>
     </div>
     <ul>

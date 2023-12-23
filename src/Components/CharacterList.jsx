@@ -7,7 +7,8 @@ function CharacterList({ selectedId, characters, isLoading, OnselectCharacter })
     <div className="w-full overflow-auto sm:w-1/2 md:w-1/3">
 
       {
-        isLoading ? (<Loader />) : (characters.map((item) => (
+        isLoading ? (<Loader />) :
+         (characters.map((item) => (
           <Character key={item.id} item={item} >
 
               {/* //children */}
@@ -36,22 +37,7 @@ export function Character({  item, children }) {
       <CharacterInfo item={item} />
       <div className="col-span-1 flex justify-end items-center">
 
-        {/* کدام آیدی برا کاراکتر انتخاب شده؟ 
-      خب جای کلیک مشخص شد 
-      حالا کامپوننت character کجاست 
-      OnselectCharacter
-      به اونم پاس میدیم  
-     توی CharacterList 
-     حالا CharacterList
-     از کجا امه از طریق پراپس به والدش پاسش میدیم و هندلر اونجا مینویسم چون کامپوننت 
-     sibiling  CharacterDetails
-     به اطلاعات اون کاراکتر انتخاب شده برا نمایشش توو خودش نیاز داره */}
-
-        {/* <button 
-     onClick={()=>OnselectCharacter(item.id)}
-      className="text-rose-500 w-8 h-10">
-    { selectedId === item.id ? <EyeSlashIcon/> : <EyeIcon/> }
-      </button> */}
+ 
         {children}
       </div>
 
