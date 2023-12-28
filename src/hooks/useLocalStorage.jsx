@@ -13,7 +13,6 @@ export default function useLocalStorage(key,intialState) {
         JSON.stringify(value))
     }, [value])
 
-    //استثنا اینجا ترتیب مهمه اول ولیو و بعد ست ولیو
     return [value, setValue];
 }
 

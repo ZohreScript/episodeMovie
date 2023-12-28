@@ -10,11 +10,9 @@ export default function Navbar({ children }) {
     <nav className="flex flex-col sm:flex-row items-center justify-between bg-slate-700 p-4 m-4 rounded-2xl">
       <Logo />
       <div className="flex flex-col md:flex-row items-center mt-4 sm:mt-0">
-        {/* <Search/> */}
-        {/* <SearchResult numOfResult={numOfResult}/> */}
+     
         {children}
       </div>
-      {/* <Favourites/> */}
     </nav>
   );
 }
