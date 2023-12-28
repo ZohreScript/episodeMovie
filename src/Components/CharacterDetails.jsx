@@ -135,6 +135,7 @@ function EpisodesList({ episodes }) {
       >
         <ArrowUpCircleIcon
           className="w-6 h-6 text-slate-200" />
+        {/* class={`transform ${sortBy ? 'rotate-0' : 'rotate-180'}`}          /> */}
       </button>
     </div>
     <ul>
