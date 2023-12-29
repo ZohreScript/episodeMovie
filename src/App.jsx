@@ -67,7 +67,7 @@ export default App
 
 function Main({ children }) {
   return (
-    <div className="flex justify-between w-full gap-8">
+    <div className="flex justify-between w-full gap-8 bg-slate-950">
       {children}
     </div>
   )
