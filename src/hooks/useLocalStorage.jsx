@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react'
 
-export default function useLocalStorage(key,intialState) {
+export default function useLocalStorage(key,intialState=[]) {
     // const [favorites, setfavorites] = useState(() => JSON.parse(
     //     localStorage.getItem("FAVORITES")) || []);
     const [value, setValue] = useState(

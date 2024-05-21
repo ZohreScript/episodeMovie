@@ -20,14 +20,13 @@ const [favorites, setfavorites] =useLocalStorage("FAVORITES");
     setfavorites((preFav) => [...preFav, char]);
   }
   const handleDeleteFavourite = (id) => {
-    setfavorites((favorites.filter((fav) => 
-    fav.id !== id)))
-  }
+    setfavorites(favorites.filter((fav) => fav.id !== id));
+  };
 
 
 
-  const isAddToFavorites = favorites.map((fav) => fav.id).includes(selectedId);
-
+  const isAddToFavorites = favorites && favorites.map((fav) => fav.id).includes(selectedId);
+  
   const handleSelectCharacter = (id) => {
 
     setSelectedId(prevId => prevId === id ? null : id);

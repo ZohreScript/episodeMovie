@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { episodes } from '../../data/data'
 import { ArrowUpCircleIcon } from '@heroicons/react/24/outline';
 import axios from 'axios';
 import Loader from './Loader';
